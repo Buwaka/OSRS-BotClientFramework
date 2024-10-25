@@ -1,6 +1,6 @@
 package org.IFOSRS.Requirement;
 
-import org.IFOSRS.Logging.Logger;
+import org.IFOSRS.Singletons.Logging.Logger;
 import org.IFOSRS.Singletons.Quest.FreeQuest;
 import org.IFOSRS.Singletons.Quest.MiniQuest;
 import org.IFOSRS.Singletons.Quest.PaidQuest;

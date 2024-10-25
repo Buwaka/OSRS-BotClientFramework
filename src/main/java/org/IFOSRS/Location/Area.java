@@ -7,21 +7,21 @@ import org.IFOSRS.Location.Tiles.Tile;
 
 public interface Area extends ClientWrapper
 {
-    @Inject
+    
     static Area CreateArea(Tile[] tiles)
     {
         assert false;
         return null;
     }
 
-    @Inject
+    
     static Area CreateArea(int x1, int y1, int x2, int y2)
     {
         assert false;
         return null;
     }
 
-    @Inject
+    
     static Area CreateArea(Tile center, int radius)
     {
         assert false;

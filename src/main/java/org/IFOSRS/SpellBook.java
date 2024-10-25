@@ -9,7 +9,10 @@ public enum SpellBook implements ClientWrapper
     LUNAR,
     ARCEUUS;
 
-    @Inject
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object getObject()
     {

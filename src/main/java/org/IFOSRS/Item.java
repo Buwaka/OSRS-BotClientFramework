@@ -1,58 +1,37 @@
 package org.IFOSRS;
 
-import org.IFOSRS.Interactive.Entity;
-
 public interface Item extends ClientWrapper
 {
-    int getID();
+    public abstract int getID();
 
-    java.lang.String[] getActions();
+    public abstract java.lang.String[] getActions();
 
-    int getAmount();
+    public abstract int getAmount();
 
-    int getLivePrice();
+    public abstract int getLivePrice();
 
-    int getHighAlchValue();
+    public abstract int getHighAlchValue();
 
-    java.awt.image.BufferedImage getImage();
+    public abstract java.awt.image.BufferedImage getImage();
 
-    java.lang.String getName();
+    public abstract java.lang.String getName();
 
-    int getNotedItemID();
+    public abstract int getNotedItemID();
 
-    int getSlot();
+    public abstract int getSlot();
 
-    boolean hasAction(java.lang.String... actions);
+    public abstract boolean hasAction(java.lang.String... actions);
 
-    boolean hasDefinition();
+    public abstract int hashCode();
 
-    int hashCode();
+    public abstract boolean interact();
 
-    boolean interact();
+    public abstract boolean interact(java.lang.String action);
 
-    boolean interact(java.lang.String action);
+    public abstract boolean isMembersOnly();
 
-    boolean isMembersOnly();
+    public abstract boolean isNotable();
 
-    boolean isNotable();
+    public abstract boolean isNoted();
 
-    boolean isNoted();
-
-    boolean isPlaceholder();
-
-    boolean isStackable();
-
-    boolean isTradable();
-
-    boolean isValid();
-
-    java.lang.String toString();
-
-    boolean useOn(int id);
-
-    boolean useOn(java.lang.String name);
-
-    boolean useOn(Entity entity);
-
-    boolean useOn(Item item);
 }

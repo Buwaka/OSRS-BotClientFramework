@@ -1,5 +1,6 @@
 package org.IFOSRS.Singletons.Bank;
 
+import com.google.inject.Inject;
 import org.IFOSRS.Interactive.Entity;
 import org.IFOSRS.Location.Area;
 import org.IFOSRS.Location.Locatable;
@@ -96,19 +97,37 @@ public enum BankLocation implements Locatable
     DORGESH_KAAN,
     SOPHANEM_DUNGEON;
 
+    @Inject
+    static IBankLocation instance = null;
+
     Area getArea(int radius)
     {
-        return Area.CreateArea(this.getTile(), radius);
+        return Area.CreateArea(instance.getTile(this), radius);
     }
 
-    Bank.BankType getBankType()
+    BankType getBankType()
     {
-        return null;
+        return instance.getBankType(this);
     }
 
     Tile getCenter()
     {
-        return null;
+        return instance.getCenter(this);
+    }
+
+    public Tile getTile()
+    {
+        return instance.getTile(this);
+    }
+
+    boolean isMembersOnly()
+    {
+        return instance.isMembersOnly(this);
+    }
+
+    public java.lang.String toString()
+    {
+        return instance.toString(this);
     }
 
     /**
@@ -116,7 +135,7 @@ public enum BankLocation implements Locatable
      */
     Requirement getCondition()
     {
-        return null;
+        return instance.getCondition(this);
     }
 
     /**
@@ -124,7 +143,7 @@ public enum BankLocation implements Locatable
      */
     static BankLocation getNearest()
     {
-        return null;
+        return instance.getNearest();
     }
 
     /**
@@ -134,7 +153,7 @@ public enum BankLocation implements Locatable
      */
     static BankLocation getNearest(Tile tile)
     {
-        return null;
+        return instance.getNearest(tile);
     }
 
 
@@ -146,7 +165,7 @@ public enum BankLocation implements Locatable
      */
     static BankLocation getNearest(Tile tile, boolean includeTeleports)
     {
-        return null;
+        return instance.getNearest(tile, includeTeleports);
     }
 
 
@@ -157,7 +176,7 @@ public enum BankLocation implements Locatable
      */
     static BankLocation getNearest(Entity entity)
     {
-        return null;
+        return instance.getNearest(entity);
     }
 
 
@@ -169,41 +188,21 @@ public enum BankLocation implements Locatable
      */
     static BankLocation getNearestEuclidean(Tile tile, boolean ignoreRequirements)
     {
-        return null;
+        return instance.getNearestEuclidean(tile, ignoreRequirements);
     }
 
     static java.util.List<BankLocation> getSortedValidLocations(Tile nearest)
     {
-        return null;
+        return instance.getSortedValidLocations(nearest);
     }
 
     static java.util.List<BankLocation> getSortedValidLocations(Entity nearest)
     {
-        return null;
-    }
-
-    public Tile getTile()
-    {
-        return null;
+        return instance.getSortedValidLocations(nearest.getTile());
     }
 
     static java.util.List<BankLocation> getValidLocations()
     {
-        return null;
-    }
-
-    boolean isMembersOnly()
-    {
-        return false;
-    }
-
-    static void resetCache()
-    {
-
-    }
-
-    public java.lang.String toString()
-    {
-        return null;
+        return instance.getValidLocations();
     }
 }

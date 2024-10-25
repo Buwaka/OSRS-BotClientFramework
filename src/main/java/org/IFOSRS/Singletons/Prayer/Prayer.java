@@ -44,42 +44,42 @@ public enum Prayer implements ClientWrapper
         return null;
     }
 
-    @Inject
+    
     int getChildIndex()
     {
         assert false;
         return -1;
     }
 
-    @Inject
+    
     int getLevel()
     {
         assert false;
         return -1;
     }
 
-    @Inject
+    
     int getQuickPrayerChild()
     {
         assert false;
         return -1;
     }
 
-    @Inject
+    
     int getSetting()
     {
         assert false;
         return -1;
     }
 
-    @Inject
+    
     WidgetChild getWidgetChild()
     {
         assert false;
         return null;
     }
 
-    @Inject
+    
     int getWidgetIndex()
     {
         assert false;
@@ -109,7 +109,7 @@ public enum Prayer implements ClientWrapper
         return null;
     }
 
-    @Inject
+    
     public java.lang.String toString()
     {
         assert false;

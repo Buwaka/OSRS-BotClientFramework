@@ -1,11 +1,9 @@
 package org.IFOSRS.Location;
 
-import com.google.inject.Inject;
 import org.IFOSRS.Location.Tiles.Tile;
-import org.IFOSRS.Singletons.Client;
+import org.IFOSRS.Singletons.Client.Client;
 import org.IFOSRS.Singletons.Map;
 import org.IFOSRS.Singletons.Players;
-import org.IFOSRS.Singletons.Walking.Pathfinder;
 
 public interface Locatable
 {

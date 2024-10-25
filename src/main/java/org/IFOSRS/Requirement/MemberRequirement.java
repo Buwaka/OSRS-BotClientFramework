@@ -1,6 +1,6 @@
 package org.IFOSRS.Requirement;
 
-import org.IFOSRS.Singletons.Client;
+import org.IFOSRS.Singletons.Client.Client;
 
 
 public class MemberRequirement implements Requirement

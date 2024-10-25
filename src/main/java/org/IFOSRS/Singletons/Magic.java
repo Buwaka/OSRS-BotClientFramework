@@ -10,7 +10,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 import javax.annotation.Nullable;
 
-@Singleton
+
 public interface Magic extends ClientWrapper
 {
     /**

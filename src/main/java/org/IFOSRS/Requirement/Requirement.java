@@ -1,7 +1,7 @@
 package org.IFOSRS.Requirement;
 
 import com.google.gson.annotations.SerializedName;
-import org.IFOSRS.Logging.Logger;
+import org.IFOSRS.Singletons.Logging.Logger;
 import java.io.Serializable;
 
 public interface Requirement extends Serializable

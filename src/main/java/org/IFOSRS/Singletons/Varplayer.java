@@ -242,7 +242,7 @@ public interface Varplayer extends ClientWrapper
      */
     public static final int DIZANAS_QUIVER_ITEM_ID = 4142;
 
-    @Inject
+    
     static int GetConfig(int id)
     {
         assert false;

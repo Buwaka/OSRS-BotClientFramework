@@ -1,47 +1,71 @@
 package org.IFOSRS.Singletons.Skills;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import org.IFOSRS.ClientWrapper;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-@Singleton
-public interface Skills extends ClientWrapper
+
+public class Skills implements ClientWrapper
 {
+    @Inject
+    static ISkills instance = null;
+
+    @Override
+    public Object getObject()
+    {
+        return instance;
+    }
+
     /**
      * @param skill
      *
      * @return Gets top level for skill
      */
-    @Inject
-    static int getBoostedLevel(@NonNull Skill skill)
+
+    public static int getBoostedLevel(@NonNull Skill skill)
     {
-        return 0;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getBoostedLevel(skill);
     }
 
     /**
-     * @return     Get all boosted levels When level shows 11/9, this method returns 11
+     * @return Get all boosted levels When level shows 11/9, this method returns 11
      */
-    @Inject
-    static int[] getBoostedLevels()
+
+    public static int[] getBoostedLevels()
     {
-        return new int[0];
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getBoostedLevels();
     }
 
 
     /**
-     * @return     Gets all experience
+     * @return Gets all experience
      */
-    @Inject
-    static int[] getExperience()
+
+    public static int[] getExperience()
     {
-        return new int[0];
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getExperience();
     }
 
-    @Inject
-    static int getExperience(@NonNull Skill skill)
+
+    public static int getExperience(@NonNull Skill skill)
     {
-        return 0;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getExperience(skill);
     }
 
     /**
@@ -49,76 +73,104 @@ public interface Skills extends ClientWrapper
      *
      * @return
      */
-    @Inject
-    static int getExperienceForLevel(int level)
+
+    public static int getExperienceForLevel(int level)
     {
-        return 0;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getExperienceForLevel(level);
     }
 
 
     /**
      * @param skill
      *
-     * @return    Gets experience to next level for skill
+     * @return Gets experience to next level for skill
      */
-    @Inject
-    static int getExperienceToLevel(@NonNull Skill skill)
+
+    public static int getExperienceToLevel(@NonNull Skill skill)
     {
-        return 0;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getExperienceToLevel(skill);
     }
 
 
     /**
-     * @return     Gets all levels based on experience When skill shows 11/9, this method has 9
+     * @return Gets all levels based on experience When skill shows 11/9, this method has 9
      */
-    @Inject
-    static int[] getLevels()
+
+    public static int[] getLevels()
     {
-        return new int[0];
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getLevels();
     }
 
 
     /**
-     * @param skill     Gets current level for skill
+     * @param skill Gets current level for skill
      *
      * @return
      */
-    @Inject
-    static int getRealLevel(@NonNull Skill skill)
+
+    public static int getRealLevel(@NonNull Skill skill)
     {
-        return 0;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getRealLevel(skill);
     }
 
 
     /**
-     * @return     Gets the total level of your character
+     * @return Gets the total level of your character
      */
-    @Inject
+
     static int getTotalLevel()
     {
-        return 0;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getTotalLevel();
     }
 
 
     /**
      * @param skill
      *
-     * @return     hovers over skill
+     * @return hovers over skill
      */
-    @Inject
-    static boolean hoverSkill(@NonNull Skill skill)
+
+    public static boolean hoverSkill(@NonNull Skill skill)
     {
-        return false;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.hoverSkill(skill);
     }
 
 
     /**
-     * @return     Opens the skills Tab
+     * @return Opens the skills Tab
      */
-    @Inject
-    static boolean open()
+
+    public static boolean open()
     {
-        return false;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.open();
     }
 
 }

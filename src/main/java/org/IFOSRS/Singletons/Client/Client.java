@@ -1,35 +1,47 @@
-package org.IFOSRS.Singletons;
+package org.IFOSRS.Singletons.Client;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import org.IFOSRS.ClientWrapper;
 import org.IFOSRS.CollisionMap;
 
 import javax.annotation.Nonnull;
 
-@Singleton
-public interface Client extends ClientWrapper
+
+public class Client implements ClientWrapper
 {
-    enum ClientType
+    @Inject
+    static IClient instance = null;
+
+    public enum ClientType
     {
         DreamBot,
         EternalClient
     }
 
-    @Inject
-    static ClientType getClientType()
+    @Override
+    public Object getObject()
     {
-        assert false;
-        return null;
+        return instance;
     }
 
 
-
-    @Inject
-    static boolean isMembers()
+    public static ClientType getClientType()
     {
-        assert false;
-        return false;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getClientType();
+    }
+
+
+    public static boolean isMembers()
+    {
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.isMembers();
     }
 
     /*@MagicConstant(flagsFromClass=net.eternalclient.api.data.CollisionDataFlag.class) int[][] getFlags()
@@ -39,21 +51,27 @@ public interface Client extends ClientWrapper
 
         Returns:
         all collision flags for the tiles in the scene*/
-    @Inject
-    static CollisionMap getCollisionMaps()
+
+    public static CollisionMap getCollisionMaps()
     {
-        assert false;
-        return null;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getCollisionMaps();
     }
 
-    @Inject
-    static byte[][][] getTileSettings()
+
+    public static byte[][][] getTileSettings()
     {
-        assert false;
-        return new byte[0][][];
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getTileSettings();
     }
 
-    enum GameState
+    public enum GameState
     {
         /**
          * Unknown game state.
@@ -107,13 +125,14 @@ public interface Client extends ClientWrapper
          * {@link GameState} value.
          *
          * @param state the raw state value
+         *
          * @return the gamestate
          */
         public static GameState of(int state)
         {
-            for (GameState gs : GameState.values())
+            for(GameState gs : GameState.values())
             {
-                if (gs.state == state)
+                if(gs.state == state)
                 {
                     return gs;
                 }
@@ -122,23 +141,32 @@ public interface Client extends ClientWrapper
         }
     }
 
-    @Inject
+
     @Nonnull
-    static GameState getGameState()
+    public static GameState getGameState()
     {
-        assert false;
-        return null;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getGameState();
     }
 
-    static int getBaseY()
+    public static int getBaseY()
     {
-        assert false;
-        return 0;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getBaseY();
     }
 
-    static int getBaseX()
+    public static int getBaseX()
     {
-        assert false;
-        return 0;
+        if(instance == null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getBaseX();
     }
 }

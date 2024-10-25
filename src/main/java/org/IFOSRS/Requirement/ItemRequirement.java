@@ -2,9 +2,9 @@ package org.IFOSRS.Requirement;
 
 
 import org.IFOSRS.Item;
-import org.IFOSRS.Logging.Logger;
+import org.IFOSRS.Singletons.Logging.Logger;
 import org.IFOSRS.Singletons.Bank.Bank;
-import org.IFOSRS.Singletons.Inventory;
+import org.IFOSRS.Singletons.Inventory.Inventory;
 
 import java.util.Arrays;
 import java.util.List;

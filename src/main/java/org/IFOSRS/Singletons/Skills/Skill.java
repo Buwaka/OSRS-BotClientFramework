@@ -3,8 +3,6 @@ package org.IFOSRS.Singletons.Skills;
 import com.google.inject.Inject;
 import org.IFOSRS.ClientWrapper;
 
-import javax.annotation.Nonnull;
-
 public enum Skill implements ClientWrapper
 {
     ATTACK,
@@ -31,84 +29,80 @@ public enum Skill implements ClientWrapper
     HUNTER,
     CONSTRUCTION;
 
-
     @Inject
+    static ISkill instance = null;
+
     @Override
     public Object getObject()
     {
-        assert false;
-        assert false;
-        return null;
+        return instance;
     }
 
-    static Skill forId(int id)
+    public int getBoostedLevel()
     {
-        assert false;
-        Skill[] var2 = values();
-        int     var3 = var2.length;
-        int     var4 = 0;
-
-        while(var4 < var3)
+        if(instance==null)
         {
-            Skill var5 = var2[var4];
-            if(var5.getId() == id)
-            {
-                return var5;
-            }
-
-            ++var4;
+            throw new IllegalStateException("Instance is null");
         }
-
-        return null;
+        return instance.getBoostedLevel(this);
     }
 
-    @Inject
-    int getBoostedLevel()
+    public int getExperience()
     {
-        assert false;
-        return 0;
+        if(instance==null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getExperience(this);
     }
 
-    @Inject
-    int getChildWidget()
+    public int getExperienceToLevel()
     {
-        assert false;
-        return 0;
+        if(instance==null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getExperienceToLevel(this);
     }
 
-    @Inject
-    int getExperience()
+    public int getId()
     {
-        assert false;
-        return 0;
+        if(instance==null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getId(this);
     }
 
-    @Inject
-    int getExperienceToLevel()
+    public int getLevel()
     {
-        assert false;
-        return 0;
+        if(instance==null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getLevel(this);
     }
 
-    @Inject
-    int getId()
+    public java.lang.String getName()
     {
-        assert false;
-        return 0;
+        if(instance==null)
+        {
+            throw new IllegalStateException("Instance is null");
+        }
+        return instance.getName(this);
     }
 
-    @Inject
-    int getLevel()
-    {
-        assert false;
-        return 0;
-    }
 
-    @Inject
-    @Nonnull
-    java.lang.String getName()
-    {
-        assert false;
-        return null;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

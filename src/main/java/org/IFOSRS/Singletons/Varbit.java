@@ -906,7 +906,7 @@ public interface Varbit extends ClientWrapper
     public static final int COLOSSAL_WYRM_COURSE_ADVANCED = 11293;
 
 
-    @Inject
+    
     static int getBitValue(int varbit)
     {
         assert false;

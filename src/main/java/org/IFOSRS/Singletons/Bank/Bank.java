@@ -1,1599 +1,923 @@
 package org.IFOSRS.Singletons.Bank;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
-import org.IFOSRS.ClientWrapper;
-import org.IFOSRS.Interactive.Entity;
 import org.IFOSRS.Item;
-import org.IFOSRS.WidgetChild;
-import org.checkerframework.checker.nullness.qual.NonNull;
 
-import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 
-@Singleton
-public interface Bank extends ClientWrapper
+public class Bank
 {
-    /**
-     * @return Gets the items in your bank
-     */
-    @Inject
-    static java.util.List<Item> all()
-    {
-        assert false;
-        return null;
-    }
-
-    /**
-     * @param filter
-     *
-     * @return A list of all the non-null items that match the given filter Filters out null before checking against the filter
-     */
-    @Inject
-    static java.util.List<Item> all(@NonNull Predicate<Item> filter)
-    {
-        assert false;
-        return null;
-    }
-
-    /**
-     * @return Gets the number of tabs currently available
-     */
-    @Inject
-    static int availableTabs()
-    {
-        assert false;
-        return 0;
-    }
-
-    /**
-     * @param slot Gets the virtual position for the specified slot.
-     *
-     * @return
-     */
-    @Inject
-    static @Nullable java.awt.Rectangle calculateSlotPosition(int slot)
-    {
-        assert false;
-        return null;
-    }
-
-    /**
-     * @return Gets the bank's max capacity
-     */
-    @Inject
-    static int capacity()
-    {
-        assert false;
-        return 0;
-    }
-
-    /**
-     * @return Exits the bank with the close button.
-     */
-    @Inject
-    static boolean close()
-    {
-        assert false;
-        return false;
-    }
-
-    /**
-     * @param id
-     *
-     * @return Checks if the bank contains the given ID Placeholders are ignored
-     */
-    @Inject
-    static boolean contains(int id)
-    {
-        assert false;
-        return false;
-    }
-
-    /**
-     * @param ids
-     *
-     * @return Checks if your collection contains at least one item which meets one of the specified ids.
-     */
     @Inject
-    static boolean contains(int... ids)
-    {
-        assert false;
-        return false;
-    }
+    static IBank instance = null;
 
     /**
-     * @param string
+     * Retrieves the original client object, needs to be cast to the right type depending on the client being used
      *
-     * @return Determines if bank contains an item that matches the given name.
+     * @return the object reference to the original client object
      */
-    @Inject
-    static boolean contains(java.lang.String string)
+    public static Object getObject()
     {
-        assert false;
-        return false;
+        return instance;
     }
 
     /**
-     * @param names
-     *
-     * @return Checks if your collection contains at least one item which meets one of the specified names.
+     * This allows you to add an item to the bank history cache, it should only be necessary if you're doing things outside our API.
      */
-    @Inject
-    static boolean contains(java.lang.String... names)
+    public static boolean addToBankHistoryCache(Item item)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._addToBankHistoryCache(item);
     }
 
     /**
-     * @param filter
-     *
-     * @return Checks if your collection contains at least one item which meets the specified filter.
+     * Gets the items in your bank
      */
-    @Inject
-    static boolean contains(@NonNull Predicate<Item> filter)
+    public static List<Item> all()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._all();
     }
 
     /**
-     * @param ids
-     *
-     * @return Checks if your Bank contains all of the items with specified IDs Placeholders are ignored
+     * A list of all the non-null items that match the given filter Filters out null before checking against the filter
      */
-    @Inject
-    static boolean containsAll(int... ids)
+    public static List<Item> all(Predicate<Item> filter)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._all(filter);
     }
 
     /**
-     * @param names
-     *
-     * @return Checks if your Bank contains all of the items with names specified Placeholders are ignored
+     * Gets the number of tabs currently available
      */
-    @Inject
-    static boolean containsAll(java.lang.String... names)
+    public static int availableTabs()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._availableTabs();
     }
 
     /**
-     * @param collection
-     *
-     * @return Checks if your bank contains all of the items in the collection
+     * Gets the virtual position for the specified slot.
      */
-    @Inject
-    static boolean containsAll(java.util.Collection<Item> collection)
+    public static Rectangle calculateSlotPosition(int slot)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._calculateSlotPosition(slot);
     }
 
     /**
-     * @param id
-     *
-     * @return Count of all the items that match the search.
+     * Gets the bank's max capacity
      */
-
-    @Inject
-    static int count(int id)
+    public static int capacity()
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._capacity();
     }
 
     /**
-     * @param ids
-     *
-     * @return Count of all the items that match the search.
+     * Exits the bank with the close button.
      */
-    @Inject
-    static int count(int... ids)
+    public static boolean close()
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._close();
     }
 
     /**
-     * @param name
-     *
-     * @return Count of all the items that match the search.
+     * Checks if the bank contains the given ID Placeholders are ignored
      */
-    @Inject
-    static int count(java.lang.String name)
+    public static boolean contains(int id)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._contains(id);
     }
 
     /**
-     * @param names
-     *
-     * @return Count of all the items that match the search.
+     * Checks if your collection contains at least one item which meets one of the specified ids.
      */
-    @Inject
-    static int count(java.lang.String... names)
-    {
-        assert false;
-        return 0;
-    }
-
-    enum BankTab
-    {
-        MAIN_TAB,
-        FIRST_TAB,
-        SECOND_TAB,
-        THIRD_TAB,
-        FOURTH_TAB,
-        FIFTH_TAB,
-        SIXTH_TAB,
-        SEVENTH_TAB,
-        EIGHTH_TAB,
-        NINTH_TAB;
-
-        @Inject
-        int count()
-        {
-            assert false;
-            return 0;
-        }
-
-        /**
-         * @return Gets the grand child WidgetChild ID of the BankTab
-         */
-        @Inject
-        int getChild()
-        {
-            assert false;
-            return 0;
-        }
-
-        /**
-         * @return Gets the config value for the BankTab
-         */
-        @Inject
-        int getConfig()
-        {
-            assert false;
-            return 0;
-        }
-
-        /**
-         * @return Gets the ID of the BankTab
-         */
-        @Inject
-        int getID()
-        {
-            assert false;
-            return 0;
-        }
-
-        @Inject
-    static @Nullable BankTab getOpen()
-        {
-            assert false;
-            return null;
-        }
-
-        @Inject
-        @Nullable
-        org.IFOSRS.WidgetChild getWidgetChild()
-        {
-            assert false;
-            return null;
-        }
-
-        @Inject
-        boolean isOpen()
-        {
-            assert false;
-            return false;
-        }
-
-        @Inject
-        boolean open()
-        {
-            assert false;
-            return false;
-        }
-    }
-
-    /**
-     * @param tab
-     *
-     * @return Gets the Item count for the BankTab
-     */
-    @Inject
-    static int count(@NonNull BankTab tab)
+    public static boolean contains(int... ids)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._contains(ids);
     }
-
 
     /**
-     * @param filter
-     *
-     * @return Count of all the items that match the search.
+     * Determines if bank contains an item that matches the given name.
      */
-    @Inject
-    static int count(@NonNull Predicate<Item> filter)
-    {
-        assert false;
-        return 0;
-    }
-
-    @Inject
-    static boolean deposit(int id)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean deposit(int id, int amount)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean deposit(java.lang.String name)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean deposit(java.lang.String name, int amount)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean deposit(@NonNull Predicate<Item> filter)
+    public static boolean contains(String string)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._contains(string);
     }
 
     /**
-     * @param filter
-     * @param amount
-     *
-     * @return Deposits the first item that matches the given Filter for the given amount
+     * Checks if your collection contains at least one item which meets one of the specified names.
      */
-    @Inject
-    static boolean deposit(@NonNull Predicate<Item> filter, int amount)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean deposit(@NonNull Item item)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean deposit(@NonNull Item item, int amount)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean depositAll(int id)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean depositAll(java.lang.String name)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean depositAll(@NonNull Predicate<Item> filter)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean depositAll(@NonNull Item item)
+    public static boolean contains(String... names)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._contains(names);
     }
 
     /**
-     * @return Deposits all worn equipment with the deposit all equipment button.
+     * Checks if your collection contains at least one item which meets the specified filter.
      */
-    @Inject
-    static boolean depositAllEquipment()
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean depositAllExcept(int... ids)
-    {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static boolean depositAllExcept(java.lang.String... names)
+    public static boolean contains(Predicate<Item> filter)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._contains(filter);
     }
 
     /**
-     * @param filter
-     *
-     * @return Deposits all items that do not match the given Filter Will call depositAllItems() if your inventory does not contain any of the given filter (nothing to exclude)
+     * Checks if your Bank contains all of the items with specified IDs Placeholders are ignored
      */
-    @Inject
-    static boolean depositAllExcept(@NonNull Predicate<Item> filter)
+    public static boolean containsAll(int... ids)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._containsAll(ids);
     }
 
     /**
-     * @return Deposits all items in your inventory with the deposit all button.
+     * Checks if your Bank contains all of the items with names specified Placeholders are ignored
      */
-    @Inject
-    static boolean depositAllItems()
+    public static boolean containsAll(String... names)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._containsAll(names);
     }
 
     /**
-     * @return Drags the item from one slot to another, either of which can be empty to simply move an item from one slot to the other
+     * Checks if your bank contains all of the items in the collection
      */
-    @Inject
-    static boolean drag(int fromSlot, int toSlot)
+    public static boolean containsAll(Collection<Item> collection)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._containsAll(collection);
     }
 
     /**
-     * @return Number of slots that do not contain an item or placeholder
+     * Count of all the items that match the search.
      */
-    @Inject
-    static int emptySlotCount()
+    public static int count(int id)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._count(id);
     }
 
     /**
-     * @param filter
-     *
-     * @return Get all items which do not fit the given criteria.
+     * Count of all the items that match the search.
      */
-    @Inject
-    static java.util.List<Item> except(@NonNull Predicate<Item> filter)
+    public static int count(int... ids)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._count(ids);
     }
 
     /**
-     * @return Number of slots that contain non-null items Includes placeholders as a full slot
+     * Count of all the items that match the search.
      */
-    @Inject
-    static int fullSlotCount()
+    public static int count(String name)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._count(name);
     }
 
     /**
-     * @param id
-     *
-     * @return Gets the first item with the given id
+     * Count of all the items that match the search.
      */
-    @Inject
-    static @Nullable Item get(int id)
+    public static int count(String... names)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._count(names);
     }
 
     /**
-     * @param ids
-     *
-     * @return Gets the first Item that matches one of the given ids
+     * Gets the Item count for the BankTab
      */
-    @Inject
-    static @Nullable Item get(int... ids)
+    public static int count(BankTab tab)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._count(tab);
     }
 
     /**
-     * @param name
-     *
-     * @return Get the item for specified name.
+     * Count of all the items that match the search.
      */
-    @Inject
-    static @Nullable Item get(java.lang.String name)
+    public static int count(Predicate<Item> filter)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._count(filter);
     }
 
     /**
-     * @param names
-     *
-     * @return Gets the first item that matches one of the given names
+     * Deposits the item with the given id
      */
-    @Inject
-    static @Nullable Item get(java.lang.String... names)
+    public static boolean deposit(int id)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._deposit(instance._get(id));
     }
 
     /**
-     * @param filter
-     *
-     * @return Gets the first Item that matches the given Filter
+     * Deposits the item with the given id and amount
      */
-    @Inject
-    static @Nullable Item get(Predicate<Item> filter)
+    public static boolean deposit(int id, int amount)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._deposit(instance._get(id), amount);
     }
 
     /**
-     * @return Gets the bank item history cache.
+     * Deposits the item with the given name
      */
-    @Inject
-    static java.util.List<Item> getBankHistoryCache()
+    public static boolean deposit(String name)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._deposit(instance._get(name));
     }
 
     /**
-     * @param id
-     *
-     * @return Gets the WidgetChild of the Item with the given ID
+     * Deposits the item with the given name and amount
      */
-    @Inject
-    static @Nullable WidgetChild getChild(int id)
+    public static boolean deposit(String name, int amount)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._deposit(instance._get(name), amount);
     }
 
     /**
-     * @param name
-     *
-     * @return Gets the WidgetChild of the Item with the given name
+     * Deposits the first item that matches the given Filter
      */
-    @Inject
-    static @Nullable WidgetChild getChild(java.lang.String name)
+    public static boolean deposit(Predicate<Item> filter)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._deposit(instance._get(filter));
     }
 
     /**
-     * @param filter
-     *
-     * @return Gets the WidgetChild of the Item that matches the given Filter
+     * Deposits the first item that matches the given Filter for the given amount
      */
-    @Inject
-    static @Nullable WidgetChild getChild(@NonNull Predicate<Item> filter)
+    public static boolean deposit(Predicate<Item> filter, int amount)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._deposit(instance._get(filter), amount);
     }
 
     /**
-     * @param item
-     *
-     * @return Gets the WidgetChild of the Item based on the item's slot value
+     * Deposits the given item
      */
-    @Inject
-    static @Nullable WidgetChild getChild(@NonNull Item item)
+    public static boolean deposit(Item item)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._deposit(item);
     }
 
     /**
-     * @param slot
-     *
-     * @return Gets the WidgetChild for the given slot
+     * Deposits the given item with the specified amount
      */
-    @Inject
-    static @Nullable WidgetChild getChildForSlot(int slot)
-    {
-        assert false;
-        return null;
-    }
-
-    enum BankType implements ClientWrapper
+    public static boolean deposit(Item item, int amount)
     {
-        BOOTH,
-        CHEST,
-        EXCHANGE,
-        NPC,
-        TABLE;
-
-        @Override
-        public Object getObject()
-        {
-            assert false;
-            return null;
-        }
-
-        /**
-         * @return Gets the banking actions of the BankType
-         */
-        @Inject
-        java.lang.String[] getActions()
-        {
-            assert false;
-            return new String[0];
-        }
-
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._deposit(item, amount);
     }
 
     /**
-     * @param type
-     *
-     * @return Gets the nearest bank interactable based on BankType
+     * Deposits all of an item for a given ID
      */
-    @Inject
-    static @Nullable Entity getClosestBank(@NonNull BankType type)
+    public static boolean depositAll(int id)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._depositAll(instance._get(id));
     }
 
     /**
-     * @return Get the closest bank location.
+     * Deposits all of an item for the given name
      */
-    @Inject
-    static @Nullable BankLocation getClosestBankLocation()
+    public static boolean depositAll(String name)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._depositAll(instance._get(name));
     }
 
-    /**
-     * @param includeTeleports
-     *
-     * @return Gets the nearest bank location see BankLocation.getNearest(Tile, boolean)
-     */
-    @Inject
-    static @Nullable BankLocation getClosestBankLocation(boolean includeTeleports)
-    {
-        assert false;
-        return null;
-    }
 
     /**
-     * @return Gets the current BankTab
+     * Deposits all of an item that matches the given Filter
      */
-    @Inject
-    static @Nullable BankTab getCurrentBankTab()
+    public static boolean depositAll(Predicate<Item> filter)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._depositAll(instance._get(filter));
     }
 
     /**
-     * @return Gets the current tab that is open
-     */
-    @Inject
-    static int getCurrentTab()
-    {
-        assert false;
-        return 0;
-    }
-
-    @Inject
-    static int getCustomWithdrawAmount()
-    {
-        assert false;
-        return 0;
-    }
-
-    public enum BankQuantitySelection implements ClientWrapper
-    {
-        ALL,
-        FIVE,
-        ONE,
-        TEN,
-        X;
-
-        @Override
-        public Object getObject()
-        {
-            assert false;
-            return null;
-        }
-        @Inject
-        int getChildId()
-        {
-            assert false;
-            return 0;
-        }
-
-        @Inject
-    static BankQuantitySelection getSelection()
-        {
-            assert false;
-            return null;
-        }
-        @Inject
-        public java.lang.String toString()
-        {
-            assert false;
-            return null;
-        }
-    }
-
-    /**
-     * @return
+     * Deposits all of the given item
      */
-    @Inject
-    static @NonNull BankQuantitySelection getDefaultQuantity()
+    public static boolean depositAll(Item item)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._depositAll(item);
     }
 
     /**
-     * @return Gets the first empty slot in the bank.
+     * Deposits all worn equipment with the deposit all equipment button.
      */
-    @Inject
-    static int getFirstEmptySlot()
+    public static boolean depositAllEquipment()
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._depositAllEquipment();
     }
 
     /**
-     * @return Gets the next full slot in your bank
+     * Deposits all items except those with the given ids
      */
-    @Inject
-    static int getFirstFullSlot()
+    public static boolean depositAllExcept(int... ids)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._depositAllExcept(ids);
     }
 
     /**
-     * @param slot
-     *
-     * @return Gets the ID of the Item in the slot.
+     * Deposits all items except those with the given names
      */
-    @Inject
-    static int getIdForSlot(int slot)
+    public static boolean depositAllExcept(String... names)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._depositAllExcept(names);
     }
 
     /**
-     * @param slot
-     *
-     * @return Gets item in specified slot.
+     * Deposits all items that do not match the given Filter
      */
-    @Inject
-    static @Nullable Item getItemInSlot(int slot)
+    public static boolean depositAllExcept(Predicate<Item> filter)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._depositAllExcept(filter);
     }
 
     /**
-     * @return Returns the last game tick (using Client.getGameTick()) of a cache update
+     * Deposits all items in your inventory with the deposit all button.
      */
-    @Inject
-    static long getLastBankHistoryCacheTick()
+    public static boolean depositAllItems()
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._depositAllItems();
     }
 
     /**
-     * @return Returns the last timestamp (using System#currentTimeMillis) of a cache update
+     * Drags the item from one slot to another, either of which can be empty to simply move an item from one slot to the other
      */
-    @Inject
-    static long getLastBankHistoryCacheTime()
+    public static boolean drag(int fromSlot, int toSlot)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._drag(fromSlot, toSlot);
     }
 
     /**
-     * @param slot
-     *
-     * @return Gets the Name for the Item in the slot.
-     */
-    @Inject
-    static java.lang.String getNameForSlot(int slot)
-    {
-        assert false;
-        return null;
-    }
-
-    public enum BankMode implements ClientWrapper
-    {
-        INSERT,
-        ITEM,
-        NOTE,
-        SWAP;
-        @Inject
-        @Override
-        public Object getObject()
-        {
-            assert false;
-            return null;
-        }
-        @Inject
-        int getChildId()
-        {
-            assert false;
-            return 0;
-        }
-        @Inject
-        public java.lang.String toString()
-        {
-            assert false;
-            return null;
-        }
-    }
-
-    /**
-     * @return Gets the current rearrange mode type;
+     * Number of slots that do not contain an item or placeholder
      */
-    @Inject
-    static @NonNull BankMode getRearrangeMode()
+    public static int emptySlotCount()
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._emptySlotCount();
     }
 
     /**
-     * @param item
-     *
-     * @return Gets the row of the Item
+     * Get all items which do not fit the given criteria.
      */
-    @Inject
-    static int getRow(@NonNull Item item)
+    public static List<Item> except(Predicate<Item> filter)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._except(filter);
     }
 
     /**
-     * @return Determines the current scroll position height of the bank's scroll container.
+     * Number of slots that contain non-null items Includes placeholders as a full slot
      */
-    @Inject
-    static int getScrollHeight()
+    public static int fullSlotCount()
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._fullSlotCount();
     }
 
     /**
-     * @param id
-     *
-     * @return Gets the slot for the item with specified ID.
+     * Gets the first item with the given id
      */
-    @Inject
-    static int getSlot(int id)
+    public static Item get(int id)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._get(id);
     }
 
     /**
-     * @param name
-     *
-     * @return Gets the slot for the item with specified name.
+     * Gets the first Item that matches one of the given ids
      */
-    @Inject
-    static int getSlot(java.lang.String name)
+    public static Item get(int... ids)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._get(ids);
     }
 
     /**
-     * @param filter
-     *
-     * @return Gets the slot for the first item that matches the given filter
+     * Get the item for specified name.
      */
-    @Inject
-    static int getSlot(@NonNull Predicate<Item> filter)
-    {
-        assert false;
-        return 0;
-    }
-
-    @Inject
-    static int getTab(int slot)
+    public static Item get(String name)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._get(name);
     }
 
     /**
-     * @param item
-     *
-     * @return Gets the tab for the Item
+     * Gets the first item that matches one of the given names
      */
-    @Inject
-    static int getTab(@NonNull Item item)
+    public static Item get(String... names)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._get(names);
     }
 
     /**
-     * @return Gets the current withdraw BankMode
+     * Gets the first Item that matches the given Filter
      */
-    @Inject
-    static @NonNull BankMode getWithdrawMode()
-    {
-        assert false;
-        return null;
-    }
-
-    @Inject
-    static boolean isAlwaysOpenTab()
+    public static Item get(Predicate<Item> filter)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._get(filter);
     }
 
     /**
-     * @return Checks if the bank has been cached.
+     * Gets the bank item history cache.
      */
-    @Inject
-    static boolean isCached()
+    public static List<Item> getBankHistoryCache()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getBankHistoryCache();
     }
 
     /**
-     * @return Checks if the bank is empty (including placeholders)
+     * Gets the Name for the Item in the slot.
      */
-    @Inject
-    static boolean isEmpty()
+    public static String getNameForSlot(int slot)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        Item item = instance._getItemInSlot(slot);
+        return item == null ? item.getName() : null;
     }
 
     /**
-     * @return Determines if bank is full.
+     * Gets the current rearrange mode type;
      */
-    @Inject
-    static boolean isFull()
+    public static BankMode getRearrangeMode()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getRearrangeMode();
     }
 
     /**
-     * @return Checks to see if the Bank container has been loaded successfully at least once Check is done during all() call
+     * Gets the row of the Item
      */
-    @Inject
-    static boolean isLoaded()
+    public static int getRow(Item item)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getRow(item);
     }
 
     /**
-     * @return Checks if the bank is currently open or not.
+     * Determines the current scroll position height of the bank's scroll container.
      */
-    @Inject
-    static boolean isOpen()
+    public static int getScrollHeight()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getScrollHeight();
     }
 
     /**
-     * @param slot
-     *
-     * @return Checks if the given slot contains an item
+     * Gets the slot for the item with specified ID.
      */
-    @Inject
-    static boolean isSlotEmpty(int slot)
+    public static int getSlot(int id)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getSlot(instance._get(id));
     }
 
     /**
-     * @param slot
-     *
-     * @return Checks if the slot has an Item in it
+     * Gets the slot for the item with specified name.
      */
-    @Inject
-    static boolean isSlotFull(int slot)
+    public static int getSlot(String name)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getSlot(instance._get(name));
     }
 
     /**
-     * @param item
-     *
-     * @return Determines if the given Item's slot is visible
+     * Gets the slot for the first item that matches the given filter
      */
-    @Inject
-    static boolean isSlotVisible(@NonNull Item item)
+    public static int getSlot(Predicate<Item> filter)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getSlot(instance._get(filter));
     }
 
     /**
-     * @param item
-     *
-     * @return Determines if the bot needs to scroll to find the Item
+     * Gets the tab for the given slot
      */
-    @Inject
-    static boolean needToScroll(@NonNull Item item)
+    public static int getTab(int slot)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getTab(slot);
     }
 
     /**
-     * @param item
-     *
-     * @return Determines if it needs to scroll down for the Item to be visible
+     * Gets the tab for the Item
      */
-    @Inject
-    static boolean needToScrollDown(@NonNull Item item)
+    public static int getTab(Item item)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getTab(item);
     }
 
     /**
-     * @param item
-     *
-     * @return Determines if it needs to scroll up in order to see the given Item
+     * Gets the current withdraw BankMode
      */
-    @Inject
-    static boolean needToScrollUp(@NonNull Item item)
+    public static BankMode getWithdrawMode()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._getWithdrawMode();
     }
 
     /**
-     * @param ids
-     *
-     * @return Checks if your Bank only contains items with the specified IDs
+     * Checks if the always open tab option is enabled
      */
-    @Inject
-    static boolean onlyContains(int... ids)
+    public static boolean isAlwaysOpenTab()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._isAlwaysOpenTab();
     }
 
     /**
-     * @param names
-     *
-     * @return Checks if your Bank only contains items with specified names
+     * Checks if the bank has been cached.
      */
-    @Inject
-    static boolean onlyContains(java.lang.String... names)
+    public static boolean isCached()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._isCached();
     }
 
     /**
-     * @param f
-     *
-     * @return Checks if your Bank only contains items that match the Filter
+     * Checks if the bank is empty (including placeholders)
      */
-    @Inject
-    static boolean onlyContains(@NonNull Predicate<Item> f)
+    public static boolean isEmpty()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._isEmpty();
     }
 
     /**
-     * @return Finds the nearest BankType and attempts to open it.
+     * Determines if bank is full.
      */
-    @Inject
-    static boolean open()
+    public static boolean isFull()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._isFull();
     }
 
     /**
-     * @param bank
-     *
-     * @return Opens a specific bank location, if you're not in the area it will call walk(Tile) and return false If given a null bank location, it will verify the nearest bank type's location (if we have it) If that verification fails, it will recalculate to find the nearest valid bank location.
+     * Checks to see if the Bank container has been loaded successfully at least once
+     * Check is done during all() call
      */
-    @Inject
-    static boolean open(@Nullable BankLocation bank)
+    public static boolean isLoaded()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._isLoaded();
     }
 
     /**
-     * @param tab
-     *
-     * @return Opens the bank tab specified
+     * Checks if the bank is currently open or not.
      */
-    @Inject
-    static boolean openTab(int tab)
+    public static boolean isOpen()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._isOpen();
     }
 
     /**
-     * @param tab
-     *
-     * @return Opens the BankTab specified.
+     * Checks if the given slot contains an item
      */
-    @Inject
-    static boolean openTab(@NonNull BankTab tab)
+    public static boolean isSlotEmpty(int slot)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._isSlotEmpty(slot);
     }
 
     /**
-     * @return Checks whether placeholders are currently enabled
+     * Checks if the slot has an Item in it
      */
-    @Inject
-    static boolean placeHoldersEnabled()
+    public static boolean isSlotFull(int slot)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._isSlotFull(slot);
     }
 
     /**
-     * This will reset the bank history cache to it's initial state
+     * Determines if the given Item's slot is visible
      */
-    @Inject
-    static void resetCache()
+    public static boolean isSlotVisible(Item item)
     {
-        assert false;
-
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._isSlotVisible(item);
     }
 
     /**
-     * @param id
-     *
-     * @return Scrolls to the item with the given ID see scroll(int, BankScroll) with a random choice of scroll types
+     * Checks if your Bank only contains items with the specified IDs
      */
-    @Inject
-    static boolean scroll(int id)
+    public static boolean onlyContains(int... ids)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._onlyContains(ids);
     }
 
     /**
-     * @param id
-     * @param type
-     *
-     * @return Scrolls to the item with the given ID using the BankScroll scroll type
+     * Checks if your Bank only contains items with specified names
      */
-    @Inject
-    static boolean scroll(int id, @NonNull BankScroll type)
+    public static boolean onlyContains(String... names)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._onlyContains(names);
     }
 
     /**
-     * @param name
-     *
-     * @return Scrolls to the item with the given name see scroll(String, BankScroll) with a random BankScroll type
+     * Checks if your Bank only contains items that match the Filter
      */
-    @Inject
-    static boolean scroll(java.lang.String name)
-    {
-        assert false;
-        return false;
-    }
-
-    public enum BankScroll
+    public static boolean onlyContains(Predicate<Item> f)
     {
-        CLICK,
-        WHEEL;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._onlyContains(f);
     }
 
     /**
-     * @param name
-     * @param type
-     *
-     * @return Scrolls to the item with the given name using the given BankScroll type
+     * Finds the nearest BankType and attempts to open it.
      */
-    @Inject
-    static boolean scroll(java.lang.String name, @NonNull BankScroll type)
+    public static boolean open()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._open();
     }
 
     /**
-     * @param filter
-     *
-     * @return Scrolls to the item which matches the given filter.
+     * Opens a specific bank location, if you're not in the area it will call walk(Tile) and return false
+     * If given a null bank location, it will verify the nearest bank type's location (if we have it)
+     * If that verification fails, it will recalculate to find the nearest valid bank location.
      */
-    @Inject
-    static boolean scroll(@NonNull Predicate<Item> filter)
+    public static boolean open(BankLocation bank)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._open(bank);
     }
 
     /**
-     * @param filter
-     * @param type
-     *
-     * @return Scrolls to the item which matches the given filter using the given BankScroll type
+     * Opens the bank tab specified
      */
-    @Inject
-    static boolean scroll(@NonNull Predicate<Item> filter, @NonNull BankScroll type)
+    public static boolean openTab(int tab)
     {
-        assert false;
-        return false;
-    }
-
-    @Inject
-    static void setAlwaysOpenTab(boolean alwaysOpenTab)
-    {
-        assert false;
-
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._openTab(tab);
     }
 
     /**
-     * @param selection
-     *
-     * @return Sets the BankQuantitySelection for bank actions
+     * Opens the BankTab specified.
      */
-    @Inject
-    static boolean setDefaultQuantity(@NonNull BankQuantitySelection selection)
+    public static boolean openTab(BankTab tab)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._openTab(tab);
     }
 
     /**
-     * @param mode
-     *
-     * @return Sets the Rearrange mode for the bank either BankMode.SWAP or BankMode.INSERT
+     * Checks whether placeholders are currently enabled
      */
-    @Inject
-    static boolean setRearrangeMode(@NonNull BankMode mode)
+    public static boolean placeHoldersEnabled()
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._placeHoldersEnabled();
     }
 
     /**
-     * @param useCache Set whether our methods use the Bank cache if you call a method while not in the bank
+     * This will reset the bank history cache to its initial state
      */
-    @Inject
-    static void setUseBankHistoryCache(boolean useCache)
+    public static void resetCache()
     {
-        assert false;
-
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        instance._resetCache();
     }
 
     /**
-     * @param mode
-     *
-     * @return Sets the withdraw mode, either BankMode.ITEM or BankMode.NOTE
+     * Sets the BankQuantitySelection for bank actions
      */
-    @Inject
-    static boolean setWithdrawMode(@NonNull BankMode mode)
+    public static boolean setDefaultQuantity(BankQuantity selection)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._setDefaultQuantity(selection);
     }
 
     /**
-     * @param slot
-     *
-     * @return Gets the bounds of a slot
+     * Sets the Rearrange mode for the bank either IBank.BankMode.SWAP or IBank.BankMode.INSERT
      */
-    @Inject
-    static @Nullable java.awt.Rectangle slotBounds(int slot)
+    public static boolean setRearrangeMode(BankMode mode)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._setRearrangeMode(mode);
     }
 
     /**
-     * @param item
-     *
-     * @return Calls slotBounds(int) with Item.getSlot() If Item is null returns null Rectangle
+     * Set whether our methods use the Bank cache if you call a method while not in the bank
      */
-    @Inject
-    static @Nullable java.awt.Rectangle slotBounds(@NonNull Item item)
+    public static void setUseBankHistoryCache(boolean useCache)
     {
-        assert false;
-        return null;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        instance._setUseBankHistoryCache(useCache);
     }
 
     /**
-     * @param slot
-     * @param ids
-     *
-     * @return Checks if the slot contains an item with an ID matching one of the given ids
+     * Sets the withdraw mode, either IBank.BankMode.ITEM or IBank.BankMode.NOTE
      */
-    @Inject
-    static boolean slotContains(int slot, int... ids)
+    public static boolean setWithdrawMode(BankMode mode)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._setWithdrawMode(mode);
     }
 
     /**
-     * @param slot
-     * @param names
-     *
-     * @return Checks if the slot contains items that matches the given names.
+     * Gets the bounds of a slot
      */
-    @Inject
-    static boolean slotContains(int slot, java.lang.String... names)
+    public static Rectangle slotBounds(int slot)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._slotBounds(slot);
     }
 
     /**
-     * @param slot
-     * @param filter
-     *
-     * @return Checks if the slot contains an item that matches the filter.
+     * Calls slotBounds(int) with Item.getSlot() If Item is null returns null Rectangle
      */
-    @Inject
-    static boolean slotContains(int slot, @NonNull Predicate<Item> filter)
+    public static Rectangle slotBounds(Item item)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._slotBounds(item.getSlot());
     }
 
     /**
-     * @param slot
-     * @param t
-     *
-     * @return Checks if the slot contains given Item
+     * Checks if the slot contains an item with an ID matching one of the given ids
      */
-    @Inject
-    static boolean slotContains(int slot, @NonNull Item t)
+    public static boolean slotContains(int slot, int... ids)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._slotContains(slot, instance._get(ids));
     }
 
     /**
-     * @param slot
-     * @param sub
-     *
-     * @return Checks if the slot has an item whose name contains the given sub string
+     * Checks if the slot contains items that matches the given names.
      */
-    @Inject
-    static boolean slotNameContains(int slot, java.lang.String sub)
+    public static boolean slotContains(int slot, String... names)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._slotContains(slot, instance._get(names));
     }
 
     /**
-     * @return Gets the ID of the WidgetChild for the tab container
+     * Checks if the slot contains an item that matches the filter.
      */
-    @Inject
-    static int tabContainerWidgetId()
+    public static boolean slotContains(int slot, Predicate<Item> filter)
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._slotContains(slot, instance._get(filter));
     }
 
     /**
-     * @param enabled
-     *
-     * @return Toggles whether placeholders are enabled or not
+     * Checks if the slot contains given Item
      */
-    @Inject
-    static boolean togglePlaceholders(boolean enabled)
+    public static boolean slotContains(int slot, Item t)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._slotContains(slot, t);
     }
 
     /**
-     * Used for updating the bank cache, generally reserved for internal use but can be called in a script during custom banking This will clear the bank cache and update it with all bank items
+     * Gets the ID of the WidgetChild for the tab container
      */
-    @Inject
-    static void updateCache()
+    public static int tabContainerWidgetId()
     {
-        assert false;
-
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._tabContainerWidgetId();
     }
 
     /**
-     * @param items Clears the bank history cache and fills it with the given collection of items, only works if bank is open
+     * Toggles whether placeholders are enabled or not
      */
-    @Inject
-    static void updateCache(java.util.Collection<Item> items)
+    public static boolean togglePlaceholders(boolean enabled)
     {
-        assert false;
-
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._togglePlaceholders(enabled);
     }
 
     /**
-     * @return Gets the ID of the WidgetChild for the bank interface
+     * Gets the ID of the WidgetChild for the bank interface
      */
-    @Inject
-    static int widgetChildId()
+    public static int widgetChildId()
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._widgetChildId();
     }
 
     /**
-     * @return Gets the ID of the Widget for the bank
+     * Gets the ID of the Widget for the bank
      */
-    @Inject
-    static int widgetParentId()
+    public static int widgetParentId()
     {
-        assert false;
-        return 0;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._widgetParentId();
     }
 
     /**
-     * @param id
-     *
-     * @return Withdraws one of the given item id
+     * Withdraws one of the given item id
      */
-    @Inject
-    static boolean withdraw(int id)
+    public static boolean withdraw(int id)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._withdraw(id);
     }
 
     /**
-     * @param id
-     * @param amount
-     *
-     * @return Withdraws an item for the id and amount given.
+     * Withdraws an item for the id and amount given.
      */
-    @Inject
-    static boolean withdraw(int id, int amount)
+    public static boolean withdraw(int id, int amount)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._withdraw(id, amount);
     }
 
     /**
-     * @param filter
-     *
-     * @return Withdraws one item that matches the given Filter
+     * Withdraws one item that matches the given Filter
      */
-    @Inject
-    static boolean withdraw(@NonNull Predicate<Item> filter)
+    public static boolean withdraw(Predicate<Item> filter)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._withdraw(filter);
     }
 
     /**
-     * @param filter
-     * @param amount
-     *
-     * @return Withdraws an item that matches the given Filter for the given amount For withdraw All-but-one pass in value: -9411
+     * Withdraws an item that matches the given Filter for the given amount
+     * For withdraw All-but-one pass in value: -9411
      */
-    @Inject
-    static boolean withdraw(@NonNull Predicate<Item> filter, int amount)
+    public static boolean withdraw(Predicate<Item> filter, int amount)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._withdraw(filter, amount);
     }
 
     /**
-     * @param name
-     *
-     * @return Withdraws one of an item with the given name
+     * Withdraws one of an item with the given name
      */
-    @Inject
-    static boolean withdraw(java.lang.String name)
+    public static boolean withdraw(String name)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._withdraw(name);
     }
 
     /**
-     * @param name
-     * @param amount
-     *
-     * @return Withdraws an item for the name and amount given.
+     * Withdraws an item for the name and amount given.
      */
-    @Inject
-    static boolean withdraw(java.lang.String name, int amount)
+    public static boolean withdraw(String name, int amount)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._withdraw(name, amount);
     }
 
     /**
-     * @param id
-     *
-     * @return Withdraws all of an item for a given ID
+     * Withdraws all of an item for a given ID
      */
-    @Inject
-    static boolean withdrawAll(int id)
+    public static boolean withdrawAll(int id)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._withdrawAll(id);
     }
 
     /**
-     * @param filter
-     *
-     * @return Withdraws all of an item that matches the given Filter
+     * Withdraws all of an item that matches the given Filter
      */
-    @Inject
-    static boolean withdrawAll(@NonNull Predicate<Item> filter)
+    public static boolean withdrawAll(Predicate<Item> filter)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._withdrawAll(filter);
     }
 
     /**
-     * @param name
-     *
-     * @return Withdraws all of an item for the given name
+     * Withdraws all of an item for the given name
      */
-    @Inject
-    static boolean withdrawAll(java.lang.String name)
+    public static boolean withdrawAll(String name)
     {
-        assert false;
-        return false;
+        if(instance == null) {throw new IllegalStateException("instance is null");}
+        return instance._withdrawAll(name);
     }
-
 }
+

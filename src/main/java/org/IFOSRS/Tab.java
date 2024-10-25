@@ -22,39 +22,42 @@ public enum Tab implements ClientWrapper
     SKILLS;
 
 
-    @Inject
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object getObject()
     {
         return null;
     }
 
-    @Inject
+    
     @Nullable
     WidgetChild getWidget()
     {
         return null;
     }
 
-    @Inject
+    
     boolean isDisabled()
     {
         return false;
     }
 
-    @Inject
+    
     boolean isOpen()
     {
         return false;
     }
 
-    @Inject
+    
     boolean open()
     {
         return false;
     }
 
-    @Inject
+    
     public java.lang.String toString()
     {
         return null;
